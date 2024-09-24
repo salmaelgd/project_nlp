@@ -1,87 +1,87 @@
 # project_nlp
-# Analyse des Sentiments des Tweets
+# Sentiment Analysis of Tweets
 
-##  Prétraitement des Données
+## Data Preprocessing
 
-###  Description de la Base de Données
-Le projet utilise le **Sentiment140 dataset** de Kaggle, contenant **1,6 million de tweets** pour l'analyse des sentiments sur les médias sociaux, notamment Twitter. Chaque tweet est annoté avec une polarité (0 pour négatif, 4 pour positif).
+### Database Description
+The project uses the **Sentiment140 dataset** from Kaggle, containing **1.6 million tweets** for sentiment analysis on social media, specifically Twitter. Each tweet is labeled with a polarity (0 for negative, 4 for positive).
 
-| Sentiment | Nombre de lignes |
-|-----------|------------------|
-| Positif   | 800,000          |
-| Négatif   | 800,000          |
+| Sentiment | Number of Rows |
+|-----------|----------------|
+| Positive  | 800,000        |
+| Negative  | 800,000        |
 
-#### Colonnes de la Base de Données :
-- **target** : polarité du tweet
-- **ids** : identifiants uniques des tweets
-- **date** : date et heure de publication (UTC)
-- **flag** : origine de la requête
-- **user** : nom de l'utilisateur
-- **text** : contenu du tweet (utilisé pour l'analyse des sentiments)
+#### Columns in the Database:
+- **target**: polarity of the tweet
+- **ids**: unique identifiers for tweets
+- **date**: date and time of publication (UTC)
+- **flag**: source of the request
+- **user**: username of the person who tweeted
+- **text**: content of the tweet (used for sentiment analysis)
 
-###  Prétraitement de la Base de Données
-- **Nettoyage du Texte** :
-  - Suppression des liens et mentions
-  - Uniformisation (minuscules)
-  - Élimination des mots vides (stop words)
-  - Application de la lemmatisation
-  - Suppression de mots spécifiques sans signification pour l'analyse
+### Data Preprocessing
+- **Text Cleaning**:
+  - Removal of links and mentions
+  - Standardization (lowercase)
+  - Elimination of stop words
+  - Application of lemmatization
+  - Removal of specific words without meaning for the analysis
 
-###  Visualisation des Données
-- Analyse des Mots Fréquents avec CountVectorizer
-- Histogramme des 20 mots les plus fréquents
-- Nuages de mots pour sentiments positifs et négatifs
-- Visualisation temporelle du nombre de tweets
+### Data Visualization
+- Analysis of Frequent Words with CountVectorizer
+- Histogram of the 20 most frequent words
+- Word clouds for positive and negative sentiments
+- Temporal visualization of the number of tweets
 
-## Modèle CNN pour l'Analyse des Sentiments
+## CNN Model for Sentiment Analysis
 
-### Préparation des Données pour le Modèle
-- Division des données : 60% entraînement, 20% validation, 20% test
+### Data Preparation for the Model
+- Data Split: 60% training, 20% validation, 20% test
 
-| Données         | Taille  |
+| Data            | Size    |
 |------------------|---------|
-| Entraînement      | 960,000 |
+| Training          | 960,000 |
 | Validation        | 320,000 |
 | Test              | 320,000 |
 
-### Hyperparamètres
-- **Fonction d'activation** : ReLU et Sigmoïde
-- **Fonction de perte** : Binary Crossentropy
-- **Optimiseur** : Adam
-- **Taille des lots** : définie selon la taille de l'ensemble de données
-- **Époques** : 25
+### Hyperparameters
+- **Activation Function**: ReLU and Sigmoid
+- **Loss Function**: Binary Crossentropy
+- **Optimizer**: Adam
+- **Batch Size**: defined based on the dataset size
+- **Epochs**: 25
 
-### Architecture du Modèle
-- Couche d'Embedding
-- Trois couches de convolution 1D
-- Couche GlobalMaxPooling1D
-- Trois couches Dense
+### Model Architecture
+- Embedding Layer
+- Three 1D Convolutional Layers
+- GlobalMaxPooling1D Layer
+- Three Dense Layers
 
-### Entraînement et Évaluation du Modèle
-- Matrice de confusion pour mesurer l'exactitude, la précision, le rappel, et le score F1
+### Model Training and Evaluation
+- Confusion matrix to measure accuracy, precision, recall, and F1-score
 
-| Données          | Accuracy | Recall | Precision | F1-score |
+| Data             | Accuracy | Recall | Precision | F1-score |
 |------------------|----------|--------|-----------|----------|
 | Train data       | 0.9741   | 0.9771 | 0.9708    | 0.9739   |
 | Validation data   | 0.7297   | 0.7324 | 0.7251    | 0.7279   |
-| Test data         | 0.7293   | 0.7310 | 0.7260    | 0.7219   |
+| Test data        | 0.7293   | 0.7310 | 0.7260    | 0.7219   |
 
-## Analyse des Tendances
+## Trend Analysis
 
-### Le Modèle LDA
-- Utilisation de Latent Dirichlet Allocation (LDA) pour l'analyse des tendances
+### LDA Model
+- Use of Latent Dirichlet Allocation (LDA) for trend analysis
 
-### Exploration des Résultats
-- Extraction et affichage des mots clés pour chaque topic
-- Visualisation graphique de la distribution des topics
+### Results Exploration
+- Extraction and display of keywords for each topic
+- Graphical visualization of topic distribution
 
-| Topic | Mots clés                             |
-|-------|---------------------------------------|
+| Topic | Keywords                               |
+|-------|----------------------------------------|
 | 1     | wow, tonight, looking, just, thank    |
 | 2     | today, days, bed, school, got         |
 | 3     | birthday, sure, cool, sick, need      |
 | 4     | hair, cute, check, www, hot           |
 | 5     | sleep, need, yeah, don, new           |
 
-### Analyse des Topics par Classe
-- Répartition des topics en fonction des classes de sentiments (positif et négatif)
+### Topic Analysis by Class
+- Distribution of topics based on sentiment classes (positive and negative)
